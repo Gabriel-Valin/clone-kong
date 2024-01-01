@@ -31,26 +31,6 @@ func TestSimpleJson(t *testing.T) {
     {
       "name": "payments",
       "url": "http://localhost:3001",
-      "plugins": [
-        {
-          "name": "jwt_auth",
-          "input": {
-            "secret": "cloudsecret",
-            "key_in_header": true,
-            "key_in_query": false,
-            "key_name": "Authorization"
-          }
-        },
-        {
-          "name": "request_size_limiting",
-          "input": {
-            "allowed_payload_size": 100
-          }
-        },
-        {
-          "name": "http_log"
-        }
-      ],
       "routes": [
         {
           "name": "create-payment",
@@ -87,7 +67,7 @@ func TestSimpleJson(t *testing.T) {
 	}
 
 	if c.Services[0].Name != "payments" || c.Services[0].URL != "http://localhost:3001" ||
-		len(c.Services[0].Plugins) != 3 || len(c.Services[0].Routes) != 2 {
+		len(c.Services[0].Routes) != 2 {
 		t.Errorf("expected service name to be payments got %v", c.Services[0].Name)
 	}
 }

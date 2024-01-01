@@ -2,6 +2,7 @@ package kong
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"slices"
 	"time"
@@ -10,7 +11,7 @@ import (
 )
 
 type Config struct {
-	Services             []Service `yaml:"services"`
+	Services             []Service `json:"services"`
 	lastModificationTime time.Time
 }
 
@@ -20,6 +21,7 @@ func (c *Config) ModifiedSince(t time.Time) bool {
 
 func (c *Config) Refresh(data []byte, modTime time.Time) error {
 	err := json.Unmarshal(data, &c)
+	fmt.Println(err)
 	if err != nil {
 		return err
 	}

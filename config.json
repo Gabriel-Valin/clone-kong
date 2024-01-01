@@ -2,73 +2,20 @@
   "services": [
     {
       "name": "payments",
-      "url": "http://localhost:3001",
-      "plugins": [
-        {
-          "name": "jwt_auth",
-          "input": {
-            "secret": "cloudsecret",
-            "key_in_header": true,
-            "key_in_query": false,
-            "key_name": "Authorization"
-          }
-        },
-        {
-          "name": "request_size_limiting",
-          "input": {
-            "allowed_payload_size": 100
-          }
-        },
-        {
-          "name": "http_log"
-        }
-      ],
       "routes": [
         {
+          "methods": ["POST"],
           "name": "create-payment",
-          "paths": [
-            "/payments"
-          ],
-          "methods": [
-            "POST"
-          ]
+          "paths": ["/payments"]
         },
         {
+          "methods": ["GET"],
           "name": "get-payment",
-          "paths": [
-            "/payments/{id}"
-          ],
-          "methods": [
-            "GET"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "shippings",
-      "url": "http://localhost:3002",
-      "plugins": [
-        {
-          "name": "http_log"
-        },
-        {
-          "name": "add_header",
-          "input": {
-            "X-Service": "custom-header-value"
-          }
+          "paths": ["/payments/{id}"]
         }
       ],
-      "routes": [
-        {
-          "name": "create-shipping",
-          "paths": [
-            "/shippings"
-          ],
-          "methods": [
-            "POST"
-          ]
-        }
-      ]
+      "url": "https://urlteste.com"
     }
   ]
 }
+

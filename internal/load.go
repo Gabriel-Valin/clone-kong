@@ -11,6 +11,7 @@ import (
 
 func Loader(config *kong.Config, fileName string, tickerDuration time.Duration) error {
 	fp, err := openFile(fileName)
+	println(fp)
 	if err != nil {
 		return err
 	}
